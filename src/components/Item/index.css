@@ -1,0 +1,20 @@
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 4px 0;
+  padding: 8px 0 12px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.item span {
+  margin: 0 0 0 12px;
+  font-size: 16px;
+  color: #666;
+  flex: 1;
+}
+
+.item input[type="checkbox"] {
+  cursor: pointer;
+}
