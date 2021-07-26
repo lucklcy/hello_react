@@ -10,13 +10,16 @@
   margin: 0 12px 0 8px;
 }
 
-.footer > span {
+.footer > label {
   flex: 1;
+}
+
+.footer > label span {
   font-size: 16px;
   color: #666;
 }
 
-.footer > span i {
+.footer > label span i {
   font-style: normal;
   margin: 0 4px;
   font-size: 18px;

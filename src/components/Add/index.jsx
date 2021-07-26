@@ -10,6 +10,7 @@ export default class Add extends Component {
     }
     let { addTodo } = this.props;
     addTodo && addTodo(val);
+    event.target.value = "";
   };
   render() {
     return (

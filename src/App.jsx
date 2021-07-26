@@ -8,24 +8,61 @@ import "./App.css";
 export default class App extends Component {
   state = {
     todoList: [
-      { id: "td100001", text: "晨读一个小时", done: true },
-      { id: "td100002", text: "编码两个小时", done: false },
-      { id: "td100003", text: "喝酒烫头", done: true },
+      { id: uuidv4(), text: "晨读一个小时", done: true },
+      { id: uuidv4(), text: "编码两个小时", done: false },
+      { id: uuidv4(), text: "喝酒烫头", done: true },
     ],
   };
-  getTodoItem = (text) => {
+
+  addTodo = (text) => {
     const { todoList } = this.state;
     const newItem = { id: uuidv4(), text, done: false };
-    this.setState({ todoList: [...todoList, newItem] });
+    this.setState({ todoList: [newItem, ...todoList] });
   };
+
+  deleteTodo = (id) => {
+    const { todoList } = this.state;
+    // const newTodoList = todoList.reduce((prev, item) => {
+    //   if (item.id !== id) prev.push(item);
+    //   return prev;
+    // }, []);
+
+    const newTodoList = todoList.filter((item) => item.id !== id);
+    this.setState({ todoList: newTodoList });
+  };
+
+  updateTodo = (id, obj) => {
+    const { todoList } = this.state;
+    const newTodoList = todoList.map((item) => {
+      if (item.id === id) {
+        return { ...item, ...obj };
+      } else {
+        return item;
+      }
+    });
+    this.setState({ todoList: newTodoList });
+  };
+
+  toggleAll = (flag) => {
+    const { todoList } = this.state;
+    const newTodoList = todoList.map((item) =>
+      Object.assign({}, item, { done: flag })
+    );
+    this.setState({ todoList: newTodoList });
+  };
+
   render() {
     let { todoList } = this.state;
     return (
       <div className="app">
         <div className="todo-list">
-          <Add addTodo={this.getTodoItem}></Add>
-          <List todos={todoList}></List>
-          <Footer></Footer>
+          <Add addTodo={this.addTodo}></Add>
+          <List
+            todos={todoList}
+            deleteTodo={this.deleteTodo}
+            updateTodo={this.updateTodo}
+          ></List>
+          <Footer todos={todoList} toggleAll={this.toggleAll}></Footer>
         </div>
       </div>
     );
