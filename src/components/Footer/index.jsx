@@ -7,13 +7,22 @@ export default class Footer extends Component {
     toggleAll && toggleAll(event.target.checked);
   };
 
+  handleClearDone = () => {
+    const { clearDone } = this.props;
+    if (window.confirm("确定清除所有已完成任务么？")) clearDone && clearDone();
+  };
+
   render() {
     const { todos: todoList } = this.props;
     const doneItemArr = todoList.filter((item) => item.done);
     return (
       <div className="footer">
         <label>
-          <input type="checkbox" onChange={this.handToggle} />
+          <input
+            type="checkbox"
+            checked={doneItemArr.length === todoList.length}
+            onChange={this.handToggle}
+          />
           <span>
             已完成
             <i>{doneItemArr.length}</i>
@@ -21,7 +30,9 @@ export default class Footer extends Component {
             <i>{todoList.length}</i>
           </span>
         </label>
-        <button className="clear-all">清除已完成任务</button>
+        <button className="clear-all" onClick={this.handleClearDone}>
+          清除已完成任务
+        </button>
       </div>
     );
   }

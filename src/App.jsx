@@ -22,11 +22,6 @@ export default class App extends Component {
 
   deleteTodo = (id) => {
     const { todoList } = this.state;
-    // const newTodoList = todoList.reduce((prev, item) => {
-    //   if (item.id !== id) prev.push(item);
-    //   return prev;
-    // }, []);
-
     const newTodoList = todoList.filter((item) => item.id !== id);
     this.setState({ todoList: newTodoList });
   };
@@ -34,11 +29,8 @@ export default class App extends Component {
   updateTodo = (id, obj) => {
     const { todoList } = this.state;
     const newTodoList = todoList.map((item) => {
-      if (item.id === id) {
-        return { ...item, ...obj };
-      } else {
-        return item;
-      }
+      if (item.id === id) return { ...item, ...obj };
+      return item;
     });
     this.setState({ todoList: newTodoList });
   };
@@ -48,6 +40,12 @@ export default class App extends Component {
     const newTodoList = todoList.map((item) =>
       Object.assign({}, item, { done: flag })
     );
+    this.setState({ todoList: newTodoList });
+  };
+
+  clearDone = () => {
+    const { todoList } = this.state;
+    const newTodoList = todoList.filter((item) => !item.done);
     this.setState({ todoList: newTodoList });
   };
 
@@ -62,7 +60,11 @@ export default class App extends Component {
             deleteTodo={this.deleteTodo}
             updateTodo={this.updateTodo}
           ></List>
-          <Footer todos={todoList} toggleAll={this.toggleAll}></Footer>
+          <Footer
+            todos={todoList}
+            toggleAll={this.toggleAll}
+            clearDone={this.clearDone}
+          ></Footer>
         </div>
       </div>
     );
