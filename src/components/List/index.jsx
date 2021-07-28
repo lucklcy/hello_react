@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import "./index.css";
 import Item from "../Item";
+import styles from "./index.module.less";
 
 export default class List extends Component {
   render() {
     const { todos: todoList, deleteTodo, updateTodo } = this.props;
     if (!todoList || todoList.length === 0)
       return (
-        <div className="list no-data">
+        <div className={[styles.list, styles.no_data].join(" ")}>
           <span>暂无任务...</span>
         </div>
       );
     return (
-      <ul className="list">
+      <ul className={styles.list}>
         {todoList.map((todo) => (
           <Item
             key={todo.id}

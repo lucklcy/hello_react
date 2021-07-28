@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.css";
+import styles from "./index.module.less";
 
 export default class Add extends Component {
   handleInputEnter = (event) => {
@@ -14,7 +14,7 @@ export default class Add extends Component {
   };
   render() {
     return (
-      <div className="add">
+      <div className={styles.add}>
         <input
           type="text"
           placeholder="请输入你的任务名称，按回车键确认"

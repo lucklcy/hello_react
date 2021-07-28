@@ -3,7 +3,7 @@ import Add from "./components/Add";
 import List from "./components/List";
 import Footer from "./components/Footer";
 import { v4 as uuidv4 } from "uuid";
-import "./App.css";
+import styles from "./App.module.less";
 
 export default class App extends Component {
   state = {
@@ -52,8 +52,8 @@ export default class App extends Component {
   render() {
     let { todoList } = this.state;
     return (
-      <div className="app">
-        <div className="todo-list">
+      <div className={styles.app}>
+        <div className={styles.todo_list}>
           <Add addTodo={this.addTodo}></Add>
           <List
             todos={todoList}

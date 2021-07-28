@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.css";
+import styles from "./index.module.less";
 
 export default class Footer extends Component {
   handToggle = (event) => {
@@ -16,7 +16,7 @@ export default class Footer extends Component {
     const { todos: todoList } = this.props;
     const doneItemArr = todoList.filter((item) => item.done);
     return (
-      <div className="footer">
+      <div className={styles.footer}>
         <label>
           <input
             type="checkbox"
@@ -30,7 +30,7 @@ export default class Footer extends Component {
             <i>{todoList.length}</i>
           </span>
         </label>
-        <button className="clear-all" onClick={this.handleClearDone}>
+        <button className={styles.clear_all} onClick={this.handleClearDone}>
           清除已完成任务
         </button>
       </div>

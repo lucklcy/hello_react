@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./index.css";
+import styles from "./index.module.less";
 
 export default class Item extends Component {
   state = {
@@ -32,7 +32,7 @@ export default class Item extends Component {
       <li
         onMouseEnter={this.handleMouse(true)}
         onMouseLeave={this.handleMouse(false)}
-        className={mouseIsEnter ? "active item" : "item"}
+        className={`${styles.item} ${mouseIsEnter ? styles.active : ""}`}
       >
         <label>
           <input
@@ -43,7 +43,7 @@ export default class Item extends Component {
           <span>{text}</span>
         </label>
         <button
-          className="delete"
+          className={styles.delete}
           style={{ display: mouseIsEnter ? "block" : "none" }}
           onClick={this.handleDelete(id)}
         >
