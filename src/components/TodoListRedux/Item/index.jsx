@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import styles from "./index.module.less";
+import { ThemeContext } from "@/context";
 
 export default class Item extends Component {
-  state = {
-    mouseIsEnter: false,
-  };
+  static contextType = ThemeContext;
+  constructor(props) {
+    super(props);
+    this.state = { mouseIsEnter: false };
+  }
   checkChange = (id) => {
     return (event) => {
       const { updateTodo } = this.props;
@@ -25,6 +28,11 @@ export default class Item extends Component {
       }
     };
   };
+
+  componentDidMount() {
+    console.log({ context: this.context });
+  }
+
   render() {
     const { mouseIsEnter } = this.state;
     const { id, text, done } = this.props;
